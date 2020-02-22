@@ -34,6 +34,9 @@ class Celular():
 	def __chequearDatos(self):
 		return (self.__Memoria == 1000 and self.__TarjetaDeRed)
 
-Samsung = Celular()
+Jugador1 = Jugador()
 print(Samsung.obtenerEstado())
 Samsung.Escender(True)
+
+
+Samsung.Estado = True
