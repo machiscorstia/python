@@ -6,7 +6,6 @@
 	Para encapsular usar __ para que no sea accesible desde otro lado que no sea la misma clase.
 
 """
-
 class Celular():
 
 	def __init__(self): # Constructor
@@ -34,7 +33,8 @@ class Celular():
 	def __chequearDatos(self):
 		return (self.__Memoria == 1000 and self.__TarjetaDeRed)
 
-Jugador1 = Jugador()
+Samsung = Celular()
+
 print(Samsung.obtenerEstado())
 Samsung.Escender(True)
 
