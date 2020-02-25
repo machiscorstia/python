@@ -40,3 +40,8 @@ Samsung.Escender(True)
 
 
 Samsung.Estado = True
+
+
+class Pene():
+	def mostrar():
+		print(hola)
