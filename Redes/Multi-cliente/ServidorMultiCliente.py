@@ -1,6 +1,6 @@
 import socket, threading
 
-class Atiende(threading.Thread):
+class recibeMensajes(threading.Thread):
 	def __init__(self, socket, direccionCliente):
 		threading.Thread.__init__(self)
 
@@ -35,7 +35,7 @@ print("> Esperando alguna conexión..")
 while True:
 	socketCliente, direccion = socketServidor.accept()
 
-	Cliente = Atiende(socketCliente, direccion)
+	Cliente = recibeMensajes(socketCliente, direccion)
 	Cliente.start()
 
 socketServidor.close()
