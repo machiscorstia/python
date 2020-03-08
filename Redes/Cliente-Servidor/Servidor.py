@@ -22,7 +22,7 @@ print("> Aceptando una conexión entrante..")
 print(socketCliente, direccionCliente)
 
 while True:
-	datosRecibidos = socketCliente.recv(1024)
+	datosRecibidos = socketServidor.recv(1024)
 
 	Mensaje = datosRecibidos.decode("utf-8")
 

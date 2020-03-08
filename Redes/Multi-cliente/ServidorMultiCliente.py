@@ -1,5 +1,7 @@
 import socket, threading
 
+Clientes = []
+
 class recibeMensajes(threading.Thread):
 	def __init__(self, socket, direccionCliente):
 		threading.Thread.__init__(self)
@@ -23,7 +25,9 @@ class recibeMensajes(threading.Thread):
 		print("> Se ha desconectado", self.direccionCliente[0], ":", self.direccionCliente[1])
 		self.socket.close()
 	
-socketServidor = socket.socket()
+socketServidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+socketServidor.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 socketServidor.bind(("localhost", 9999))
 print("> Servidor conectado a localhost:9999")
