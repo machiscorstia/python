@@ -10,6 +10,7 @@ def accion(cmd):
     if cmd == 'E':
         return encriptar()
     elif cmd == 'D':
+        
         return desencriptar()
 
 def verificar(t):
