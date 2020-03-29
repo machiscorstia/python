@@ -6,7 +6,7 @@ class Alumno():
         self.apellido = apellido
         self.legajo = legajo
         self.curso = curso
-        self.calificaciones = {}  # key > object, value > int
+        self.calificaciones = {}  # key > object, value > list/int
 
     def agregarMateria(self, materia):
         """
