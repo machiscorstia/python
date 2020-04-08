@@ -1,4 +1,4 @@
-from Funciones import *
+from Funciones import calcularPromedio
 
 class Alumno():
     def __init__(self, legajo, nombre, apellido, curso):
