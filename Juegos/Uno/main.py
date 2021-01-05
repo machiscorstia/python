@@ -1,10 +1,16 @@
 import random
 
+class cardName:
+    color = ['Azul', 'Rojo', 'Amarillo', 'Verde']
+
 class Card:
     def __init__(self, number, color):
-        self.__number = number
-        self.__color = color
-        self.__visibility = False
+        self.number = number
+        self.color = color
+        self.visibility = False
+
+    def name(self):
+        print(cardName.color[self.color] + self.number)
     
 class Player:
     def __init__(self, name):
@@ -12,6 +18,12 @@ class Player:
         self.turn = False
         self.__cards = []
 
+    def viewCards(self):
+        i = 0
+        for card in self.__cards:
+            print(f'{i}: {card.name}')
+            i += 1
+        
     def getCards(self):
         return len(self.__cards)
 
@@ -27,10 +39,15 @@ class Player:
 
 class Board:
     def __init__(self):
+        self.targetPlayer = None
+        self.currentCard = 0
         self.__cards = []
         self.__players = []
         self.__accum = 0
-        self.__currentCard = None
+    
+    def getPlayers(self):
+        for player in self.__players:
+            print(f'{player.name}')
         
     def createCards(self):
         for color in range(0, 4):
@@ -55,7 +72,12 @@ class Board:
         #print('\033[92m' + 'Jugador agregado correctamente' + '\033[0m')
     
     def getRandomCard(self):
-        return self.__cards[random.randint(0, len(self.__cards))]
+        return self.__cards[random.randint(0, len(self.__cards) - 1)]
+
+    def setCurrentCard(self):
+        targetCard = self.getRandomCard()
+        self.removeCard(targetCard)
+        self.currentCard = targetCard
 
     def giveStartCards(self):
         for player in self.__players:
@@ -66,8 +88,14 @@ class Board:
                 player.takeCard(card)
                 i += 1
     
-    def setTurn(self):
-        self.__players[random.randint(0, len(self.__players))].turn = True
+    def nextTurn(self):
+        pass
+
+    def setStartTurn(self):
+        print(len(self.__players) - 1)
+        rnd = random.randint(0, len(self.__players) - 1)
+        self.targetPlayer = self.__players[rnd]
+        self.targetPlayer.turn = True
 
 mainBoard = Board()
 maxPlayers = int(input('Cantidad de jugadores: '))
@@ -75,8 +103,21 @@ maxPlayers = int(input('Cantidad de jugadores: '))
 print(f"Configurando la partida para {maxPlayers} jugadores.")
 mainBoard.createPlayers(maxPlayers)
 
-print(f"\nConfigurando cartas..")
+print(f"\nConfigurando el tablero..")
 mainBoard.createCards()
+mainBoard.setCurrentCard()
 mainBoard.giveStartCards()
+mainBoard.setStartTurn()
 
+inGame = True
+while inGame:
+    player = mainBoard.targetPlayer
+    currentCard = mainBoard.currentCard
+    print(f'Turno del jugador {player.name} \n')
+    print('Carta actual: ', currentCard)
+    player.viewCards()
+    temp = input()
+
+    
+    
 
